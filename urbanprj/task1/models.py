@@ -13,4 +13,3 @@ class Game(models.Model):
     description = models.TextField()
     age_limited = models.BooleanField(default="False")
     buyer = models.ManyToManyField(Buyer, related_name='games')
-
