@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин компьютерных игр</title>
+</head>
+
+<body>
+
+<h1>
+{% block pagename %}
+Welcome to My Site
+{% endblock %}
+</h1>
+
+{% block menu %}
+<ul>
+    <li><a href="/platform/">Главная</a></li>
+    <br>
+    <li><a href="/platform/shop">Магазин</a></li>
+    <br>
+    <li><a href="/platform/cart">Корзина</a></li>
+</ul>
+{% endblock %}
+
+{% block content %}
+Content
+{% endblock %}
+
+</body>
+</html>
