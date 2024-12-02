@@ -1,0 +1,43 @@
+{% extends 'my_base.html' %}
+
+{% block content %}
+    <h1>Список постов</h1>
+    <form method="GET" action="?page=1">
+        <strong>Постов на странице:</strong>
+        <select name="numposts">
+        {% for num in num_pages_list %}
+        {% if num == numposts %}
+            <option selected>{{ num }}</option>
+        {% else %}
+            <option>{{ num }}</option>
+        {% endif %}
+        {% endfor %}
+        </select>&nbsp;<button type="submit"><strong>Показать</strong></button>
+    </form>
+    <br>
+    <ul>
+        {% for post in page_posts %}
+            <li>
+                {{ post.title }} ({{ post.created_at }})
+                <p>{{ post.content }}</p>
+            </li>
+        {% empty %}
+            <p>Нет постов.</p>
+        {% endfor %}
+    </ul>
+    <!-- показываем пагинатор -->
+    <div class="pagination">
+        <p>Страницы:</p>
+        <ul>
+            {% if page_posts.has_previous %}
+                <li><a href="?page=1&numposts={{ numposts }}"><<</a></li>
+                <li><a href="?page={{ page_posts.previous_page_number }}&numposts={{ numposts }}">Предыдущая</a></li>
+            {% endif %}
+            <li>{{ page_posts.number }}/{{ paginator.num_pages }}</li>
+            {% if page_posts.has_next %}
+                <li><a href="?page={{ page_posts.next_page_number }}&numposts={{ numposts }}">Следующая</a></li>
+                <li><a href="?page={{ paginator.num_pages }}&numposts={{ numposts }}">>>></a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

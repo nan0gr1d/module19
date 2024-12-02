@@ -70,7 +70,7 @@ def sign_up_by_html(request):
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'base.html')
 
 def shop(request):
     games = Game.objects.all()
